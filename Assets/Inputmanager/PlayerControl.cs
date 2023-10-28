@@ -33,7 +33,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""id"": ""f9b85ad7-ccdc-4e2c-83f8-4bc0587dd015"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
@@ -42,7 +42,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""id"": ""e20660b6-7314-4a64-ad3e-21803dcf9f7b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""initialStateCheck"": false
                 },
                 {
