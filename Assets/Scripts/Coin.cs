@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Coin : MonoBehaviour
@@ -25,9 +26,14 @@ public class Coin : MonoBehaviour
         {
 
             getCoins++;
+            Debug.Log("Get Coin");
             //audioManager.ReproduceSound(pickCoin);
 
             Destroy(gameObject);
+        }
+        if(getCoins == 10)
+        {
+            Debug.Log("You Win");
         }
     }
 }

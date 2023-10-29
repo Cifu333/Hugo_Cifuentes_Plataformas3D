@@ -31,6 +31,7 @@ public class Movement : MonoBehaviour
         controller = GetComponent<CharacterController>();
     }
 
+
     
     private void Update()
     {
