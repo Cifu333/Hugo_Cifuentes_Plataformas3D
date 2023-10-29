@@ -20,7 +20,7 @@ public class Hat : MonoBehaviour
            isCreate = true;
             sombrero.transform.position = target.transform.position;
             timer = 3f;
-            Debug.Log("GGGGGGGGGGGGGGGGGGGG");
+            Debug.Log("Lanzar sombrero");
         }
 
         
