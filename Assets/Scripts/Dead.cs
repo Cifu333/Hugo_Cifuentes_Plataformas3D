@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Dead : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class Dead : MonoBehaviour
     {
         if(other.gameObject == player)
         {
-            Destroy(player);
+            SceneManager.LoadScene("SampleScene");
 
             Debug.Log("Game Over");
         }
