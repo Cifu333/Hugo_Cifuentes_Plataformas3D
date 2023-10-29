@@ -13,12 +13,12 @@ public class Input_Manager : MonoBehaviour
 
     private Vector2 leftAxisValue = Vector2.zero;
     private float timeSinceCrouchPressed = 0f;
-    private float timeSinceJumpPressed = 0f;  
-    
+    private float timeSinceJumpPressed = 0f;
+    private float timeSinceHatLeft = 0f;
+
     private bool jumpButtonPressed = false;
     private bool crouchButtonPressed = false;
-
-
+    private bool hatleft = false;
 
 
     //private bool Jump = false;
@@ -37,6 +37,7 @@ public class Input_Manager : MonoBehaviour
             playerInputs.Character.Jump.performed += JumpButtonPresed;
             playerInputs.Character.Movement.performed += LeftAxisUpdate;
             playerInputs.Character.Crouch.performed += CrouchButtonPresed;
+            playerInputs.Character.Hat.performed += TrowHat;
 
             _INPUT_MANAGER = this;
             DontDestroyOnLoad(this.gameObject);
@@ -59,6 +60,15 @@ public class Input_Manager : MonoBehaviour
         timeSinceJumpPressed = 0f;
         Debug.Log("ESPACIO");
     }
+
+    private void TrowHat(InputAction.CallbackContext context)
+    {
+        hatleft = !hatleft;
+
+        timeSinceHatLeft = 0f;
+        //Debug.Log("tiras sombrero");
+    }
+
 
     private void LeftAxisUpdate(InputAction.CallbackContext context)
     {
@@ -89,7 +99,7 @@ public class Input_Manager : MonoBehaviour
 
     public bool getJUmpButton()
     {
-        Debug.Log("Pruebasalto");
+        //Debug.Log("Pruebasalto");
         return jumpButtonPressed;
     }
 
@@ -97,6 +107,13 @@ public class Input_Manager : MonoBehaviour
     {
         return timeSinceJumpPressed;  
 ;
+    }
+
+
+    public bool GetTrowHat()
+    {
+        return hatleft;
+        
     }
 
     public float GetCrouchButonPresed()
