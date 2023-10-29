@@ -65,7 +65,7 @@ public class Input_Manager : MonoBehaviour
     private void CrouchButtonPresed(InputAction.CallbackContext context)
     {
         timeSinceCrouchPressed = 0f;
-        //Debug.Log("agacha");
+        Debug.Log("agacha");
     }
 
     public Vector2 GetLeftAxisUpdate()

@@ -15,6 +15,8 @@ public class Movement : MonoBehaviour
 
     private int count = 0;
 
+    [SerializeField]
+    private float jumpForce = 5;
 
     [SerializeField]
     private float gravity = 1;
@@ -29,8 +31,12 @@ public class Movement : MonoBehaviour
         controller = GetComponent<CharacterController>();
     }
 
+    
     private void Update()
     {
+        
+       
+
         input = Input_Manager._INPUT_MANAGER.GetLeftAxisUpdate();
 
         if (Input_Manager._INPUT_MANAGER.GetLeftAxisPressed())
@@ -42,7 +48,7 @@ public class Movement : MonoBehaviour
             Ismoving = false;
         }
 
-        Debug.Log(Ismoving);
+        //Debug.Log(Ismoving);
 
         //Calcular direccion XZ
         Vector3 direction = Quaternion.Euler(0f, camera.transform.eulerAngles.y, 0f) * new Vector3(input.x,0, input.y);
@@ -55,10 +61,18 @@ public class Movement : MonoBehaviour
         finalVelocity.x = direction.x * velocityXZ;
         finalVelocity.z = direction.z * velocityXZ;
 
+
+      
+        if(count == 3) {
+            jumpForce = 5;
+            count = 0;
+        }
         //Debug.Log(Input_Manager._INPUT_MANAGER.GetJumpButonPresed());
-        if (Input_Manager._INPUT_MANAGER.GetJumpButonPresed() == 0) 
-        {
-            finalVelocity.y = 30;
+        if (Input.GetKeyDown(KeyCode.Space) && controller.isGrounded) 
+        { 
+            finalVelocity.y = jumpForce;
+            jumpForce += jumpForce;
+            count++;
         }else
         {
             finalVelocity.y += direction.y * gravity * Time.deltaTime;
