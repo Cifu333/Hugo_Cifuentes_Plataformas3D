@@ -62,28 +62,44 @@ public class Movement : MonoBehaviour
         finalVelocity.z = direction.z * velocityXZ;
 
 
-      
-        if(count == 3) {
+
+
+        if (count == 3)
+        {
             jumpForce = 5;
             count = 0;
         }
-        //Debug.Log(Input_Manager._INPUT_MANAGER.GetJumpButonPresed());
-        if (Input.GetKeyDown(KeyCode.Space) && controller.isGrounded) 
-        { 
-            finalVelocity.y = jumpForce;
-            jumpForce += jumpForce;
-            count++;
-        }else
+
+        if (controller.isGrounded)
+
         {
-            finalVelocity.y += direction.y * gravity * Time.deltaTime;
+            Debug.Log("ISGROUND");
+            //Debug.Log(Input_Manager._INPUT_MANAGER.GetJumpButonPresed());
+            if (Input_Manager._INPUT_MANAGER.getJUmpButton())
+            {
+                Debug.Log("isjumping");
+                finalVelocity.y = jumpForce;
+                jumpForce += jumpForce;
+                count++;
+            }
+          
+
         }
-        
-     
+
+        finalVelocity.y += direction.y * gravity * Time.deltaTime;
+
+
         controller.Move(finalVelocity * Time.deltaTime);
        
 
 
 
+    }
+
+    public Vector3 SetJump()
+    {
+        finalVelocity.y = 10;
+        return finalVelocity;
     }
 
     public bool IsMoving()

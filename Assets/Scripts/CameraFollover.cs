@@ -10,6 +10,11 @@ public class CameraFollover : MonoBehaviour
     [SerializeField] GameObject target;
     [SerializeField] float cameraLerp = 12f;
 
+    [SerializeField]
+    private Vector3 offset;
+
+    private Vector3 FinaltargetPosition;
+
     private void Update()
     {
         rotationX += Input.GetAxis("Mouse Y") * 5;
@@ -23,27 +28,31 @@ public class CameraFollover : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.eulerAngles = new Vector3(rotationX, rotationY, 0f);
-        Vector3 finalPosition = Vector3.Lerp(transform.position, target.transform.position - transform.forward * targetDistance, cameraLerp * Time.deltaTime);
+    
 
+        //Debug.Log(target.transform.position + offset);
+
+        transform.eulerAngles = new Vector3(rotationX, rotationY, 0f);
+        Vector3 finalPosition = Vector3.Lerp(transform.position, target.transform.position + offset - transform.forward * targetDistance, cameraLerp * Time.deltaTime);
+        //Vector3 finalPosition = (target.transform.position + offset - transform.forward * targetDistance);
         tmpFinalPosition = finalPosition;
 
-        /*
+        
         RaycastHit hit;
 
-        if (Physics.Raycast(target.transform.position, finalPosition, out hit))
+        if (Physics.Linecast(target.transform.position + offset, finalPosition, out hit))
         {
             finalPosition = hit.point;
             tmpFinalPosition = hit.point;
         }
-        */
+        
         transform.position = finalPosition;
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(target.transform.position, 0.5f);
-        Gizmos.DrawLine(target.transform.position, tmpFinalPosition);
+        Gizmos.DrawSphere(target.transform.position + offset, 0.5f);
+        Gizmos.DrawLine(target.transform.position + offset, tmpFinalPosition);
     }
 }

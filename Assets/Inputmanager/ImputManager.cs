@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -12,9 +13,14 @@ public class Input_Manager : MonoBehaviour
 
     private Vector2 leftAxisValue = Vector2.zero;
     private float timeSinceCrouchPressed = 0f;
-    private float JumpTimer = 0;
-
+    private float timeSinceJumpPressed = 0f;  
     
+    private bool jumpButtonPressed = false;
+    private bool crouchButtonPressed = false;
+
+
+
+
     //private bool Jump = false;
     private bool a;
 
@@ -39,16 +45,18 @@ public class Input_Manager : MonoBehaviour
 
     private void Update()
     {
-        JumpTimer += Time.deltaTime;
+        crouchButtonPressed = false;
+
+        timeSinceJumpPressed += Time.deltaTime;
         timeSinceCrouchPressed += Time.deltaTime;
         InputSystem.Update();
     }
 
     private void JumpButtonPresed(InputAction.CallbackContext context)
     {
-     
+        jumpButtonPressed = !jumpButtonPressed;
 
-        JumpTimer = 0f;
+        timeSinceJumpPressed = 0f;
         Debug.Log("ESPACIO");
     }
 
@@ -79,12 +87,16 @@ public class Input_Manager : MonoBehaviour
         return leftAxisValue.x != 0 || leftAxisValue.y != 0;
     }
 
-    public float GetJumpButonPresed()
+    public bool getJUmpButton()
     {
+        Debug.Log("Pruebasalto");
+        return jumpButtonPressed;
+    }
 
-        return JumpTimer;
-        
-       
+    public float GetTimeJumpButton()
+    {
+        return timeSinceJumpPressed;  
+;
     }
 
     public float GetCrouchButonPresed()
