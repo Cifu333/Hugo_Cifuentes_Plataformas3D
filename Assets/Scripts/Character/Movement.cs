@@ -91,4 +91,15 @@ public class Movement : MonoBehaviour
         return Ismoving;
     }
 
+    
+    public int Getcount()
+    {
+        return count;
+    }
+
+    public bool GetGround()
+    {
+        return controller.isGrounded;
+    }
+
 }

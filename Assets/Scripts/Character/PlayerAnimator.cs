@@ -10,6 +10,8 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField]
     private Animator animator;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,5 +23,9 @@ public class PlayerAnimator : MonoBehaviour
     {
 
         animator.SetBool("moving", move.IsMoving());
+        animator.SetInteger("jump1", move.Getcount());
+        animator.SetBool("IsGrounded", move.GetGround());
+
+
     }
 }
