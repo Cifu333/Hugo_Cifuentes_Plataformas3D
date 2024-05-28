@@ -12,7 +12,7 @@ public class Dead : MonoBehaviour
     [SerializeField]
     private UiScene dead;
 
-
+    // cuandoel jugador entra en el trigger de este objeto muere
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject == player)

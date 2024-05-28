@@ -32,7 +32,7 @@ public class Input_Manager : MonoBehaviour
             Destroy(this.gameObject);
         }
         else
-        {
+        {//configurar inputs del jugador
             playerInputs = new PlayerControl();
             playerInputs.Character.Enable();
             playerInputs.Character.Jump.performed += JumpButtonPresed;
@@ -50,11 +50,12 @@ public class Input_Manager : MonoBehaviour
     {
         crouchButtonPressed = false;
 
+        //actualizar el ultimo input de los botones
         timeSinceJumpPressed += Time.deltaTime;
         timeSinceCrouchPressed += Time.deltaTime;
         InputSystem.Update();
     }
-
+    // mira si se ha pulsado el boton de salto mira los saltos restantes
     private void JumpButtonPresed(InputAction.CallbackContext context)
     {
         jumpButtonPressed = !jumpButtonPressed;
@@ -64,6 +65,7 @@ public class Input_Manager : MonoBehaviour
     }
 
 
+    //mira si se ha lanzado el sombrero y avisa cuando se acaba al tiempo
 
     private void TrowHat(InputAction.CallbackContext context)
     {
@@ -73,23 +75,20 @@ public class Input_Manager : MonoBehaviour
         //Debug.Log("tiras sombrero");
     }
 
-
     private void LeftAxisUpdate(InputAction.CallbackContext context)
     {
         leftAxisValue = context.ReadValue<Vector2>();
-
-
-
         //Debug.Log("Magnitude: " + leftAxisValue.magnitude);
         //Debug.Log("Normalize: " + leftAxisValue.normalized);
     }
 
+    //mira si se ha pulsaod el boton de agacharse
     private void CrouchButtonPresed(InputAction.CallbackContext context)
     {
         crouch = true;
         Debug.Log("agacha");
     }
-
+    //mira si el boton de agacharse se ha dejado de pulsar
     private void CrouchButtonReleased(InputAction.CallbackContext context)
     {
         crouch = false;

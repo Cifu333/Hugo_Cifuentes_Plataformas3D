@@ -17,6 +17,7 @@ public class CameraFollover : MonoBehaviour
 
     private void Update()
     {
+        //actualiza la rotacion de la camara y la limita 
         rotationX += Input.GetAxis("Mouse Y") * 5;
         rotationY += Input.GetAxis("Mouse X") * 5;
         rotationX = Mathf.Clamp(rotationX, -89, 89);
@@ -24,20 +25,17 @@ public class CameraFollover : MonoBehaviour
 
     }
 
+    //posicion final de la camara
     Vector3 tmpFinalPosition;
 
     private void LateUpdate()
     {
-    
-
-        //Debug.Log(target.transform.position + offset);
-
+   //calcular posicion final de la camara
         transform.eulerAngles = new Vector3(rotationX, rotationY, 0f);
         Vector3 finalPosition = Vector3.Lerp(transform.position, target.transform.position + offset - transform.forward * targetDistance, cameraLerp * Time.deltaTime);
-        //Vector3 finalPosition = (target.transform.position + offset - transform.forward * targetDistance);
         tmpFinalPosition = finalPosition;
 
-        
+        // Realiza un chequeo de colisión para evitar que la cámara atraviese objetos
         RaycastHit hit;
 
         if (Physics.Linecast(target.transform.position + offset, finalPosition, out hit))
@@ -48,7 +46,7 @@ public class CameraFollover : MonoBehaviour
         
         transform.position = finalPosition;
     }
-
+    // Dibuja una esfera en la posición del objetivo más el desplazamiento de la cámara
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
