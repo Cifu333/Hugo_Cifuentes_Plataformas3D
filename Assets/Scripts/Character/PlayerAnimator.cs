@@ -11,14 +11,9 @@ public class PlayerAnimator : MonoBehaviour
     private Animator animator;
 
 
+ 
+    //comprobamos si los parametros de movimiento se estan ejecutando para hacer una a nimacion o otra dependiendo de que funcion este activa
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    
-    }
-
-    // Update is called once per frame
     void Update()
     {
 

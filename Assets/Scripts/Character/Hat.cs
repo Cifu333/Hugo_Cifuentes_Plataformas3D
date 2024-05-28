@@ -17,7 +17,15 @@ public class Hat : MonoBehaviour
     {
         if (Input_Manager._INPUT_MANAGER.GetTrowHat() && isCreate !=true )
         {
-           isCreate = true;
+   
+
+            //Comprobamos si el sombrero ha sido lanzado si es true se coloca el sombreto en la posicion que le decimos
+            //reiniciamos el temporizador cuando llegue a 0 el sombrero se descativa
+
+           
+
+
+            isCreate = true;
             sombrero.transform.position = target.transform.position;
             timer = 3f;
             Debug.Log("Lanzar sombrero");
@@ -34,6 +42,7 @@ public class Hat : MonoBehaviour
                 sombrero.SetActive(false);
             }
         }
+        //si no ha sido lanzado mantiene la posicion original
         else
         {
             sombrero.transform.position = target.transform.position;

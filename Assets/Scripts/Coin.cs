@@ -5,29 +5,26 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    //private Audio_Manager audioManager;
+    //acedemos al audio manager
+    private Audio_Manager audioManager;
 
     private static int getCoins;
 
-    [SerializeField]
-    private AudioClip pickCoin;
+   
 
 
-    private void Start()
-    {
-        getCoins = 0;
-
-        //audioManager = Audio_Manager._AUDIO_MANAGER;
-    }
+  
 
     private void OnTriggerEnter(Collider other)
     {
+        //si el jugador toca la moneda la coje y suma uno a su contador tambien hace sonar el audio de recojer moneda si recojes 10 ganas
         if (other.gameObject.CompareTag("Player"))
         {
 
             getCoins++;
             Debug.Log("Get Coin");
-            //audioManager.ReproduceSound(pickCoin);
+            audioManager = GetComponent<Audio_Manager>();
+        
 
             Destroy(gameObject);
         }
